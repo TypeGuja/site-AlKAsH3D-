@@ -1,0 +1,186 @@
+/* ============================================
+   СТИЛИ ТОЛЬКО ДЛЯ СТРАНИЦЫ 3D-ПЕЧАТИ
+   ============================================ */
+
+/* ----- ГЕРОЙ 3D ----- */
+.hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid #333;
+    border-radius: 8px;
+    background: radial-gradient(circle at left, #1a1a1a, #2a1a0a);
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.hero h1 i {
+    color: #ff6b00;
+    font-style: normal;
+    background: #2a2a2a;
+    padding: 0 12px;
+    border-radius: 12px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #aaa;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ----- ПРЕИМУЩЕСТВА 3D ----- */
+.features {
+    padding: 60px 0;
+    border-bottom: 1px solid #333;
+    background: radial-gradient(circle at top right, #2a1a0a, #1a1a1a);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.feature-item {
+    padding: 8px;
+}
+
+.feature-item i {
+    font-size: 28px;
+    color: #ff6b00;
+    margin-bottom: 16px;
+}
+
+.feature-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.feature-item p {
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* ----- ВСЕ УСЛУГИ 3D ----- */
+.section-3d {
+    padding: 60px 0;
+    border-bottom: 1px solid #333;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.card {
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(255, 107, 0, 0.15);
+    border-color: #ff6b00;
+}
+
+.card h4 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.card .price {
+    font-weight: 700;
+    font-size: 18px;
+    color: #ff6b00;
+}
+
+.card .btn-card {
+    background: transparent;
+    border: 1px solid #ff6b00;
+    color: #ff6b00;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+.card .btn-card:hover {
+    background: #ff6b00;
+    color: #fff;
+}
+
+/* ----- ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ ----- */
+.section-minecraft {
+    padding: 60px 0;
+}
+
+.section-minecraft .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.section-minecraft .feature-item {
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #333;
+    transition: all 0.3s;
+}
+
+.section-minecraft .feature-item:hover {
+    border-color: #ff6b00;
+    transform: translateY(-4px);
+}
+
+.section-minecraft .feature-item i {
+    color: #ff6b00;
+}
+
+.section-minecraft .feature-item p {
+    color: #aaa;
+}
+
+/* ====== АДАПТИВНОСТЬ ====== */
+@media (max-width: 992px) {
+    .features-grid,
+    .card-grid,
+    .section-minecraft .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .features-grid,
+    .card-grid,
+    .section-minecraft .features-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель — Print & Mod</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ====== ШАПКА ====== -->
+<nav class="navbar">
+  <div class="container">
+    <div class="logo">Print<span>&</span>Mod</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="html/3DPrint_index.html">3D Печать</a></li>
+      <li><a href="html/Minecraft_index.html">Minecraft</a></li>
+      <li><a href="admin.html" style="color: #ff6b00; font-weight: 600;">Админка</a></li>
+    </ul>
+    <div class="nav-actions">
+            <span style="color: #888; font-size: 14px;">
+                <i class="fas fa-user-shield"></i> <span id="adminUser">Admin</span>
+            </span>
+      <button class="btn-outline-light" onclick="window.location.href='index.html'">
+        <i class="fas fa-home"></i> На сайт
+      </button>
+      <button class="btn-outline-light" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i> Выйти
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== АДМИН-ПАНЕЛЬ ====== -->
+<section style="padding: 40px 0;">
+  <div class="container">
+
+    <!-- Вкладки -->
+    <div style="display: flex; gap: 12px; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 16px;">
+      <button class="admin-tab-btn active" data-tab="products" style="
+                padding: 10px 24px;
+                background: #ff6b00;
+                border: none;
+                border-radius: 8px;
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+            ">
+        <i class="fas fa-box"></i> Товары
+      </button>
+      <button class="admin-tab-btn" data-tab="users" style="
+                padding: 10px 24px;
+                background: #333;
+                border: none;
+                border-radius: 8px;
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+            ">
+        <i class="fas fa-users"></i> Пользователи
+      </button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ВКЛАДКА: ТОВАРЫ -->
+    <!-- ============================================ -->
+    <div id="tabProducts" class="admin-tab-content">
+
+      <div class="admin-header">
+        <h1><i class="fas fa-cubes"></i> Управление товарами</h1>
+        <button class="btn-primary" onclick="openAddModal()">
+          <i class="fas fa-plus"></i> Добавить товар
+        </button>
+      </div>
+
+      <!-- Статистика -->
+      <div class="admin-stats">
+        <div class="admin-stat-card">
+          <div class="number" id="statTotal">0</div>
+          <div class="label">Всего товаров</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="number" id="statCategories">0</div>
+          <div class="label">Категорий</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="number" id="statHits">0</div>
+          <div class="label">Хитов</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="number" id="statLatest">—</div>
+          <div class="label">Последний товар</div>
+        </div>
+      </div>
+
+      <!-- Поиск и фильтр -->
+      <div class="admin-toolbar">
+        <input type="text" id="searchInput" placeholder="🔍 Поиск по названию или описанию...">
+        <select id="categoryFilter">
+          <option value="">Все категории</option>
+          <option value="Плагины">Плагины</option>
+          <option value="Моды">Моды</option>
+          <option value="Скины">Скины</option>
+          <option value="Карты">Карты</option>
+          <option value="Ресурспаки">Ресурспаки</option>
+          <option value="Датапаки">Датапаки</option>
+          <option value="Другое">Другое</option>
+        </select>
+        <button class="btn-outline-light" onclick="loadProducts()">
+          <i class="fas fa-sync"></i> Обновить
+        </button>
+      </div>
+
+      <!-- Таблица товаров -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Тег</th>
+            <th>Цена</th>
+            <th>Категория</th>
+            <th>Действия</th>
+          </tr>
+          </thead>
+          <tbody id="productsTableBody">
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 40px; color: #666;">
+              <i class="fas fa-spinner fa-spin" style="font-size: 24px;"></i> Загрузка...
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ВКЛАДКА: ПОЛЬЗОВАТЕЛИ -->
+    <!-- ============================================ -->
+    <div id="tabUsers" class="admin-tab-content" style="display: none;">
+
+      <div class="admin-header">
+        <h1><i class="fas fa-users-cog"></i> Управление пользователями</h1>
+        <span class="badge" id="usersCount">Загрузка...</span>
+      </div>
+
+      <!-- Таблица пользователей -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Роль</th>
+            <th>Дата регистрации</th>
+            <th>Действия</th>
+          </tr>
+          </thead>
+          <tbody id="usersTableBody">
+          <tr>
+            <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+              <i class="fas fa-spinner fa-spin" style="font-size: 24px;"></i> Загрузка...
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== МОДАЛКА ДОБАВЛЕНИЯ/РЕДАКТИРОВАНИЯ ТОВАРА ====== -->
+<div id="adminProductModal" class="auth-overlay admin-modal">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAdminModal()">&times;</button>
+    <h2 id="modalTitle" style="margin-bottom: 24px; color: #fff;">
+      <i class="fas fa-plus"></i> Добавить товар
+    </h2>
+
+    <div class="form-row">
+      <div class="full-width">
+        <input id="productName" type="text" placeholder="Название товара *" class="auth-input">
+      </div>
+      <div class="full-width">
+        <textarea id="productDesc" placeholder="Описание товара" class="auth-input"></textarea>
+      </div>
+      <div>
+        <input id="productTag" type="text" placeholder="Тег (например: Хит)" class="auth-input">
+      </div>
+      <div>
+        <input id="productPrice" type="text" placeholder="Цена (например: 1490 ₽)" class="auth-input">
+      </div>
+      <div class="full-width">
+        <input id="productCategory" type="text" placeholder="Категория (Плагины, Моды...)" class="auth-input">
+      </div>
+      <div class="full-width" style="display: flex; gap: 12px; margin-top: 8px;">
+        <button class="auth-submit" onclick="saveProduct()">
+          <i class="fas fa-check"></i> Сохранить
+        </button>
+        <button class="btn-outline-light" onclick="closeAdminModal()" style="flex: 1; padding: 12px; border-radius: 8px;">
+          Отмена
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== ПОДВАЛ ====== -->
+<footer class="footer">
+  <div class="container">
+    <div>© 2026 Print&Mod. Все права защищены.</div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="html/3DPrint_index.html">3D Печать</a>
+      <a href="html/Minecraft_index.html">Minecraft</a>
+      <a href="admin.html">Админка</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

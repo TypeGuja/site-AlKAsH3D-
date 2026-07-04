@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Печать под заказ — Print & Mod</title>
+
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/3d-print.css">
+</head>
+<body>
+
+<!-- ====== ШАПКА (НАВИГАЦИЯ) ====== -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">Print<span>&</span>Mod</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Главная</a></li>
+            <li><a href="3DPrint_index.html" style="color: #ff6b00; font-weight: 600;">3D Печать</a></li>
+            <li><a href="Minecraft_index.html">Minecraft</a></li>
+            <li><a href="#">Плагины</a></li>
+            <li><a href="#">Сообщество</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="btn-outline-light"><i class="fas fa-search"></i></button>
+
+            <!-- БЛОК АВТОРИЗАЦИИ -->
+            <div class="auth-block" style="display: flex; align-items: center; gap: 12px;">
+                <div class="auth-buttons" style="display: flex; gap: 8px;">
+                    <button class="btn-outline-light" id="loginBtn" onclick="showLoginForm()">Войти</button>
+                    <button class="btn-primary" id="registerBtn" onclick="showRegisterForm()">Регистрация</button>
+                </div>
+                <div class="user-info" style="display: none; align-items: center; gap: 12px;">
+                    <span style="color: #ff6b00; font-weight: 500;">
+                        <i class="fas fa-user"></i> <span id="userNameDisplay">Пользователь</span>
+                    </span>
+                    <span style="color: #888; font-size: 13px;" id="userRoleDisplay">user</span>
+                    <button class="btn-outline-light" id="logoutBtn" style="display: none;">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ ====== -->
+<div id="authModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 999; align-items: center; justify-content: center;">
+    <div style="background: #1e1e1e; padding: 40px; border-radius: 16px; max-width: 420px; width: 90%; border: 1px solid #333; position: relative;">
+
+        <button onclick="closeAuthModal()" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #888; font-size: 24px; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#888'">&times;</button>
+
+        <h2 style="margin-bottom: 24px; color: #fff;">Авторизация</h2>
+
+        <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+            <button id="showLoginTab" style="flex: 1; padding: 10px; background: #ff6b00; border: none; border-radius: 8px; color: #fff; font-weight: 600; cursor: pointer; transition: background 0.2s;">Вход</button>
+            <button id="showRegisterTab" style="flex: 1; padding: 10px; background: #333; border: none; border-radius: 8px; color: #fff; font-weight: 600; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#444'" onmouseout="this.style.background='#333'">Регистрация</button>
+        </div>
+
+        <div id="loginForm">
+            <input id="loginUsername" type="text" placeholder="Имя пользователя" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: #fff; margin-bottom: 12px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ff6b00'" onblur="this.style.borderColor='#333'">
+            <input id="loginPassword" type="password" placeholder="Пароль" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: #fff; margin-bottom: 16px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ff6b00'" onblur="this.style.borderColor='#333'">
+            <button id="loginSubmit" style="width: 100%; padding: 12px; background: #ff6b00; border: none; border-radius: 8px; color: #fff; font-weight: 600; font-size: 16px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#e05e00'" onmouseout="this.style.background='#ff6b00'">Войти</button>
+            <div style="text-align: center; margin-top: 12px; font-size: 14px; color: #666;">
+                Нет аккаунта? <a href="#" onclick="event.preventDefault(); showRegisterForm();" style="color: #ff6b00; text-decoration: none;">Зарегистрируйтесь</a>
+            </div>
+        </div>
+
+        <div id="registerForm" style="display: none;">
+            <input id="regUsername" type="text" placeholder="Имя пользователя" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: #fff; margin-bottom: 12px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ff6b00'" onblur="this.style.borderColor='#333'">
+            <input id="regEmail" type="email" placeholder="Email" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: #fff; margin-bottom: 12px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ff6b00'" onblur="this.style.borderColor='#333'">
+            <input id="regPassword" type="password" placeholder="Пароль (мин. 6 символов)" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: #fff; margin-bottom: 12px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ff6b00'" onblur="this.style.borderColor='#333'">
+            <input id="regConfirm" type="password" placeholder="Подтвердите пароль" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: #fff; margin-bottom: 16px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#ff6b00'" onblur="this.style.borderColor='#333'">
+            <button id="registerSubmit" style="width: 100%; padding: 12px; background: #ff6b00; border: none; border-radius: 8px; color: #fff; font-weight: 600; font-size: 16px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#e05e00'" onmouseout="this.style.background='#ff6b00'">Зарегистрироваться</button>
+            <div style="text-align: center; margin-top: 12px; font-size: 14px; color: #666;">
+                Уже есть аккаунт? <a href="#" onclick="event.preventDefault(); showLoginForm();" style="color: #ff6b00; text-decoration: none;">Войдите</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== ГЕРОЙ (3D) ====== -->
+<section class="hero">
+    <div class="container">
+        <h1>3D Печать <i>под заказ</i></h1>
+        <p>Высокоточная 3D-печать любой сложности. От прототипов до готовых деталей. Работаем с любыми материалами.</p>
+        <div class="hero-buttons">
+            <button class="btn-hero-primary">Заказать сейчас</button>
+            <button class="btn-hero-secondary">Рассчитать стоимость</button>
+        </div>
+    </div>
+</section>
+
+<!-- ====== ПРЕИМУЩЕСТВА 3D ====== -->
+<section class="features">
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-clock"></i>
+                <h3>Быстрое производство</h3>
+                <p>Изготовление деталей от 1 дня. Срочные заказы за 4 часа.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-cubes"></i>
+                <h3>Любые материалы</h3>
+                <p>PLA, ABS, PETG, нейлон, фотополимеры, металлические порошки.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-ruler-combined"></i>
+                <h3>Высокая точность</h3>
+                <p>Точность печати до 0.05 мм. Идеально для прототипов и деталей.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-truck"></i>
+                <h3>Доставка по всей РФ</h3>
+                <p>Отправка почтой, СДЭК или курьером. Бесплатная доставка от 5000 ₽.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== ВСЕ УСЛУГИ 3D ПЕЧАТИ ====== -->
+<section class="section-3d" style="background: transparent; border: none;">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-print"></i> Все услуги 3D печати</h2>
+            <span class="badge">12 вариантов</span>
+        </div>
+        <div class="card-grid" id="threeDGridFull">
+            <!-- Карточки будут добавлены через JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- ====== ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ ====== -->
+<section class="section-minecraft" style="border-top: 1px solid #eaeaea; padding-top: 60px;">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-paint-brush"></i> Дополнительные услуги</h2>
+            <span class="badge">Опции</span>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item" style="border: 1px solid #eee; border-radius: 12px; padding: 24px;">
+                <i class="fas fa-palette"></i>
+                <h3>Покраска</h3>
+                <p>Аэрография и ручная покраска любой сложности.</p>
+            </div>
+            <div class="feature-item" style="border: 1px solid #eee; border-radius: 12px; padding: 24px;">
+                <i class="fas fa-file-export"></i>
+                <h3>3D моделирование</h3>
+                <p>Разработка 3D-моделей по вашим чертежам и эскизам.</p>
+            </div>
+            <div class="feature-item" style="border: 1px solid #eee; border-radius: 12px; padding: 24px;">
+                <i class="fas fa-box"></i>
+                <h3>Упаковка</h3>
+                <p>Надёжная упаковка для хрупких и крупных деталей.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== ПОДВАЛ ====== -->
+<footer class="footer">
+    <div class="container">
+        <div>© 2026 Print&Mod. Все права защищены.</div>
+        <div class="footer-links">
+            <a href="../index.html">Главная</a>
+            <a href="3DPrint_index.html">3D Печать</a>
+            <a href="Minecraft_index.html">Minecraft</a>
+            <a href="#">Политика</a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</footer>
+
+<!-- Подключаем JavaScript -->
+<script src="../js/auth.js"></script>
+<script src="../js/3DPrint_main.js"></script>
+</body>
+</html>

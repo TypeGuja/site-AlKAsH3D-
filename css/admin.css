@@ -1,0 +1,242 @@
+/* ============================================
+   АДМИН-ПАНЕЛЬ СТИЛИ
+   ============================================ */
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.admin-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.admin-header h1 i {
+    color: #ff6b00;
+    margin-right: 12px;
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.admin-stat-card {
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #333;
+    transition: all 0.3s;
+}
+
+.admin-stat-card:hover {
+    border-color: #ff6b00;
+    transform: translateY(-4px);
+}
+
+.admin-stat-card .number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ff6b00;
+}
+
+.admin-stat-card .label {
+    color: #888;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.admin-toolbar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.admin-toolbar input,
+.admin-toolbar select {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+    flex: 1;
+    min-width: 150px;
+}
+
+.admin-toolbar input:focus,
+.admin-toolbar select:focus {
+    border-color: #ff6b00;
+}
+
+.admin-toolbar .btn-outline-light {
+    white-space: nowrap;
+}
+
+/* ----- ТАБЛИЦА ----- */
+.admin-table-wrap {
+    overflow-x: auto;
+    background: #2a2a2a;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.admin-table th {
+    padding: 14px 16px;
+    text-align: left;
+    background: #1e1e1e;
+    color: #888;
+    font-weight: 600;
+    border-bottom: 2px solid #333;
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #333;
+    vertical-align: middle;
+}
+
+.admin-table tr:hover td {
+    background: rgba(255, 107, 0, 0.03);
+}
+
+.admin-table .actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-table .btn-icon {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.admin-table .btn-icon:hover {
+    background: #333;
+}
+
+.admin-table .btn-icon.edit:hover {
+    color: #ff6b00;
+}
+
+.admin-table .btn-icon.delete:hover {
+    color: #f44336;
+}
+
+.admin-table .tag-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #ff6b00;
+    color: #fff;
+}
+
+.admin-table .category-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    background: #333;
+    color: #aaa;
+}
+
+/* ----- МОДАЛКА ----- */
+.admin-modal .auth-modal {
+    max-width: 560px;
+}
+
+.admin-modal .auth-modal h2 i {
+    color: #ff6b00;
+    margin-right: 8px;
+}
+
+.admin-modal .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.admin-modal .form-row .full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-modal textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+/* ----- ВКЛАДКИ ----- */
+.admin-tab-btn {
+    padding: 10px 24px;
+    background: #333;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.admin-tab-btn:hover {
+    background: #444;
+    transform: translateY(-1px);
+}
+
+.admin-tab-btn.active {
+    background: #ff6b00;
+}
+
+/* ----- АДАПТИВНОСТЬ ----- */
+@media (max-width: 992px) {
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+    .admin-toolbar {
+        flex-direction: column;
+    }
+    .admin-toolbar input,
+    .admin-toolbar select {
+        width: 100%;
+        min-width: auto;
+    }
+    .admin-modal .form-row {
+        grid-template-columns: 1fr;
+    }
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

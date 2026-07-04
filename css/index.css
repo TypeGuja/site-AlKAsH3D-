@@ -1,0 +1,217 @@
+/* ============================================
+   СТИЛИ ТОЛЬКО ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
+   ============================================ */
+
+/* ----- ГЕРОЙ ----- */
+.hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid #333;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.hero h1 i {
+    color: #ff6b00;
+    font-style: normal;
+    background: #2a2a2a;
+    padding: 0 12px;
+    border-radius: 12px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #aaa;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ----- ПРЕИМУЩЕСТВА ----- */
+.features {
+    padding: 60px 0;
+    border-bottom: 1px solid #333;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.feature-item {
+    padding: 8px;
+}
+
+.feature-item i {
+    font-size: 28px;
+    color: #ff6b00;
+    margin-bottom: 16px;
+}
+
+.feature-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.feature-item p {
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* ----- СЕКЦИЯ 3D НА ГЛАВНОЙ ----- */
+.section-3d {
+    padding: 60px 0;
+    border-bottom: 1px solid #333;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.card {
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.card h4 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.card .price {
+    font-weight: 700;
+    font-size: 18px;
+    color: #ff6b00;
+}
+
+.card .btn-card {
+    background: transparent;
+    border: 1px solid #ff6b00;
+    color: #ff6b00;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+.card .btn-card:hover {
+    background: #ff6b00;
+    color: #fff;
+}
+
+/* ----- СЕКЦИЯ MINECRAFT НА ГЛАВНОЙ ----- */
+.section-minecraft {
+    padding: 60px 0;
+}
+
+.minecraft-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.mc-card {
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid #32CD32;
+    transition: background 0.2s;
+}
+
+.mc-card:hover {
+    background: #333;
+}
+
+.mc-card .tag {
+    display: inline-block;
+    background: #32CD32;
+    color: #fff;
+    padding: 2px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.mc-card h4 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.mc-card .meta {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.mc-card .btn-card {
+    background: transparent;
+    border: 1px solid #32CD32;
+    color: #32CD32;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mc-card .btn-card:hover {
+    background: #32CD32;
+    color: #fff;
+}
+
+/* ----- КНОПКА "ВСЕ УСЛУГИ" ----- */
+.view-all {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* ====== АДАПТИВНОСТЬ ====== */
+@media (max-width: 992px) {
+    .features-grid,
+    .card-grid,
+    .minecraft-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .features-grid,
+    .card-grid,
+    .minecraft-grid {
+        grid-template-columns: 1fr;
+    }
+}

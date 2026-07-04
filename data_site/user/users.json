@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "username": "GUJA",
+        "email": "gusamogus84@yandex.ru",
+        "password": "$2y$10$Fl4I38PjZCObjrtmCtWAwuze7AVOESoobcHoF9YsMtNS6KgnJ.wea",
+        "created_at": "2026-07-04 15:25:39",
+        "role": "admin"
+    }
+]

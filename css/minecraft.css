@@ -1,0 +1,243 @@
+/* ============================================
+   СТИЛИ ТОЛЬКО ДЛЯ СТРАНИЦЫ MINECRAFT
+   ============================================ */
+
+/* ----- ГЕРОЙ MINECRAFT ----- */
+.hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid #333;
+    animation: fadebackground 300s infinite;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 3s ease;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.hero h1 i {
+    color: #32CD32;
+    font-style: normal;
+    background: #2a2a2a;
+    padding: 0 12px;
+    border-radius: 12px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #aaa;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-hero-primary1 {
+    background: #1e1e1e;
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-hero-primary1:hover {
+    background: #333;
+}
+
+.btn-hero-secondary1 {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #fff;
+}
+
+.btn-hero-secondary1:hover {
+    border-color: #1e1e1e;
+    background: #32CD32;
+}
+
+/* ----- ПРЕИМУЩЕСТВА MINECRAFT ----- */
+.features {
+    padding: 60px 0;
+    border-bottom: 1px solid #333;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.feature-item {
+    padding: 8px;
+}
+
+.feature-item i {
+    font-size: 28px;
+    color: #ff6b00;
+    margin-bottom: 16px;
+}
+
+.feature-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.feature-item p {
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* ----- ВСЕ ТОВАРЫ MINECRAFT ----- */
+.section-minecraft {
+    padding: 60px 0;
+    border-bottom: 1px solid #333;
+}
+
+.minecraft-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.mc-card {
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid #ff6b00;
+    transition: all 0.3s;
+}
+
+.mc-card:hover {
+    background: #333;
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(255, 107, 0, 0.1);
+}
+
+.mc-card .tag {
+    display: inline-block;
+    background: #ff6b00;
+    color: #fff;
+    padding: 2px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.mc-card h4 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.mc-card .meta {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.mc-card .btn-card {
+    background: transparent;
+    border: 1px solid #ff6b00;
+    color: #ff6b00;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mc-card .btn-card:hover {
+    background: #ff6b00;
+    color: #fff;
+}
+
+/* ----- КАТЕГОРИИ MINECRAFT ----- */
+.section-3d {
+    padding: 60px 0;
+}
+
+.section-3d .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.section-3d .feature-item {
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #333;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.section-3d .feature-item:hover {
+    border-color: #ff6b00;
+    transform: translateY(-4px);
+}
+
+.section-3d .feature-item i {
+    font-size: 32px;
+    color: #ff6b00;
+    margin-bottom: 16px;
+}
+
+.section-3d .feature-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.section-3d .feature-item p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* ====== АДАПТИВНОСТЬ ====== */
+@media (max-width: 992px) {
+    .features-grid,
+    .minecraft-grid,
+    .section-3d .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .features-grid,
+    .minecraft-grid,
+    .section-3d .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* анимация банеров */
+@keyframes fadebackground {
+    0%, 16% { background-image: url("../assets/Minecraft/banner.jpg"); }
+    20%, 36% { background-image: url('../assets/Minecraft/banner1.jpg'); }
+    40%, 56% { background-image: url('../assets/Minecraft/banner2.jpg'); }
+    60%, 76% { background-image: url('../assets/Minecraft/banner3.jpg'); }
+    80%, 96% { background-image: url('../assets/Minecraft/banner4.jpg'); }
+    100%, 0% { background-image: url('../assets/Minecraft/banner.jpg'); }
+
+}
